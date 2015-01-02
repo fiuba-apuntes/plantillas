@@ -1,0 +1,29 @@
+\documentclass[a4paper, twoside]{article}
+\usepackage[utf8]{inputenc} % Especifica la codificación de caracteres de los documentos.
+\usepackage[spanish]{babel} % Indica que el documento se escribirá en español.
+\usepackage[headheight=16pt,scale={0.7,0.8},hoffset=0.5cm]{geometry}
+\usepackage{subfiles} % Paquete para incluir el preambulo en los sub archivos.
+\usepackage{hyperref} % Permite incluir direcciones URL en los archivos.
+\usepackage{lastpage} % Paquete para poder contabilizar el total de páginas del documento.
+\usepackage{fancyhdr} % Permite personalizar los header y footer del documento.
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ \ #1}}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\rightmark}
+\fancyfoot[LO]{Página \thepage\ de \pageref{LastPage}}
+\fancyfoot[RO]{Nombre del apunte}
+\fancyfoot[LE]{Nombre del apunte}
+\fancyfoot[RE]{Página \thepage\ de \pageref{LastPage}}
+
+\title{Plantilla de apunte de FIUBA Apuntes}
+
+\begin{document}
+\subfile{caratula.tex}
+\newpage
+\tableofcontents
+\subfile{sobre-el-proyecto.tex}
+\subfile{colaboradores.tex}
+
+\end{document}
