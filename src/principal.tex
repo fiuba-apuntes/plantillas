@@ -3,19 +3,33 @@
 \usepackage[spanish]{babel} % Indica que el documento se escribirá en español.
 \usepackage[headheight=16pt,scale={0.7,0.8},hoffset=0.5cm]{geometry}
 \usepackage{subfiles} % Paquete para incluir el preambulo en los sub archivos.
-\usepackage{hyperref} % Permite incluir direcciones URL en los archivos.
+\usepackage{hyperref} % Permite incluir enlaces en los archivos.
 \usepackage{lastpage} % Paquete para poder contabilizar el total de páginas del documento.
 \usepackage{fancyhdr} % Permite personalizar los header y footer del documento.
 
+% Define los estilos de los enlaces interpretados por el paquete hyperref
+\hypersetup{
+    colorlinks=true,   % false: boxed links; true: colored links
+    linkcolor=black,   % color of internal links (change box color with linkbordercolor)
+    citecolor=green,   % color of links to bibliography
+    filecolor=magenta, % color of file links
+    urlcolor=blue,     % color of external links
+}
+
+% Define el pagestyle personalizado
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ \ #1}}
-\fancyhead[LO]{\rightmark}
-\fancyhead[RE]{\rightmark}
-\fancyfoot[LO]{Página \thepage\ de \pageref{LastPage}}
-\fancyfoot[RO]{Nombre del apunte}
-\fancyfoot[LE]{Nombre del apunte}
-\fancyfoot[RE]{Página \thepage\ de \pageref{LastPage}}
+% Define header para pagina par
+\fancyhead[ER]{\rightmark}
+% Define header para pagina impar
+\fancyhead[OL]{\rightmark}
+% Define footer para pagina par
+\fancyfoot[EL]{Nombre del apunte} % Nombre del apunte a la izquierda
+\fancyfoot[ER]{Página \thepage\ de \pageref{LastPage}} % Numero de pagina a la derecha
+% Define footer para pagina impar
+\fancyfoot[OL]{Página \thepage\ de \pageref{LastPage}} % Numero de pagina a la izquierda
+\fancyfoot[OR]{Nombre del apunte} % Nombre del apunte a la derecha
 
 \title{Plantilla de apunte de FIUBA Apuntes}
 
@@ -23,7 +37,9 @@
 \subfile{caratula.tex}
 \newpage
 \tableofcontents
-\subfile{sobre-el-proyecto.tex}
-\subfile{colaboradores.tex}
+\subfile{sobre-el-proyecto.tex} % Inlcuye informacion sobre el proyecto FIUBA Apuntes
 
+% Agregar acá el contenido del apunte
+
+\subfile{colaboradores.tex} % Incluye la lista de colaboradores del apunte
 \end{document}
