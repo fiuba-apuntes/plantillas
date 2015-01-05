@@ -1,0 +1,297 @@
+% **************************************************************************
+%  Package 'caratula', para las caratulas de los apuntes digitales de FIUBA
+%
+%  Basado en el Package 'caratula', version 0.5 (para componer caratulas de
+%  TPs del DC), hecho por Brian J.Cardiff y Nico Rosner
+%
+% **************************************************************************
+
+% ----- Informacion sobre el package para el sistema -----------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{caratula}[2015/01/04 Para componer caratulas de apuntes de FIUBA]
+\RequirePackage{ifthen}
+\usepackage[pdftex]{graphicx}
+\graphicspath{{./}}
+
+% ----- Imprimir un mensajito al procesar un .tex que use este package -----
+
+\typeout{Cargando package 'caratula' (2015/01/04)}
+
+% ----- Algunas variables --------------------------------------------------
+
+\let\Tema\relax
+\let\Subtema\relax
+\let\Materia\relax
+\let\Tipoapunte\relax
+\let\Fecha\relax
+\let\Logoimagefile\relax
+\newcommand{\LabelAutores}{}
+\newboolean{showPadron}
+\newboolean{showRevisiones}
+
+% ----- Comandos para que el usuario defina las variables ------------------
+
+\def\tema#1{\def\Tema{#1}}
+\def\subtema#1{\def\Subtema{#1}}
+\def\materia#1{\def\Materia{#1}}
+\def\tipoapunte#1{\def\Tipoapunte{#1}}
+\def\fecha#1{\def\Fecha{#1}}
+\def\logoimagefile#1{\def\Logoimagefile{#1}}
+
+% ----- Token list para los autores ------------------------------------
+
+\newtoks\autlist\autlist={}
+
+\newtoks\autlistSinPadron\autlistSinPadron={}
+
+\newcounter{autoresCount}
+\setcounter{autoresCount}{0}
+\newtoks\autTabNombre\autTabNombre={}
+\newtoks\autTabPadron\autTabPadron={}
+\newtoks\autTabEmail\autTabEmail={}
+
+\newtoks\revilist\revilist={}
+
+\newcounter{revisionesCount}
+\setcounter{revisionesCount}{0}
+\newtoks\reviTabRevisor\reviTabRevisor={}
+\newtoks\reviTabFecha\reviTabFecha={}
+\newtoks\reviTabDetalle\reviTabDetalle={}
+
+
+% ----- Comando para que el usuario agregue autores --------------------
+
+\def\autor#1#2#3{%
+    \autlist=\expandafter{\the\autlist\rule{0pt}{1.2em}#1&#2&\tt #3\\[0.2em]}%
+    \autlistSinPadron=\expandafter{\the\autlistSinPadron\rule{0pt}{1.2em}#1 & \tt #3\\[0.2em]}%
+    %
+    \ifthenelse{\value{autoresCount} > 0}{%
+        \autTabNombre=\expandafter{\the\autTabNombre & #1}%
+        \autTabPadron=\expandafter{\the\autTabPadron & #2}%
+        \autTabEmail=\expandafter{\the\autTabEmail & \tt #3}%
+    }{
+        \autTabNombre=\expandafter{\the\autTabNombre #1}%
+        \autTabPadron=\expandafter{\the\autTabPadron #2}%
+        \autTabEmail=\expandafter{\the\autTabEmail \tt #3}%
+    }%
+    \addtocounter{autoresCount}{1}%
+}
+
+\def\revision#1#2#3{%
+    \revilist=\expandafter{\the\revilist\rule{0pt}{1.2em}\tt#1&\tt#2&\tt #3\\[0.2em]}%
+
+    \ifthenelse{\value{revisionesCount} > 0}{%
+        \reviTabFecha=\expandafter{\the\reviTabFecha & #1}%
+        \reviTabRevisor=\expandafter{\the\reviTabRevisor & #2}%
+        \reviTabDetalle=\expandafter{\the\reviTabDetalle & #3}%
+    }{
+        \reviTabFecha=\expandafter{\the\reviTabFecha #1}%
+        \reviTabRevisor=\expandafter{\the\reviTabRevisor #2}%
+        \reviTabDetalle=\expandafter{\the\reviTabDetalle  #3}%
+    }%
+    \addtocounter{revisionesCount}{1}%
+}
+
+
+% ----- Macro para generar la tabla de autores -------------------------
+
+\newcommand{\tablaAutores}{\ }
+
+\newcommand{\tablaAutoresVertical}{%
+\ifthenelse{\boolean{showPadron}}{%
+    \begin{tabular}[t]{ l @{\hspace{4ex}} c @{\hspace{4ex}} l}
+        \multicolumn{1}{c}{\rule{0pt}{1.2em} \LabelAutores} & Padron &  \multicolumn{1}{c}{Correo electr\'onico} \\[0.2em]
+        \hline \hline
+        \the\autlist
+    \end{tabular}
+}{
+    \begin{tabular}[t]{ l @{\hspace{4ex}} @{\hspace{4ex}} l}
+        \multicolumn{1}{c}{\rule{0pt}{1.2em} \LabelAutores} &  \multicolumn{1}{c}{Correo electr\'onico} \\[0.2em]
+        \hline \hline
+        \the\autlistSinPadron
+    \end{tabular}
+    }%
+}
+
+\newcommand{\tablaAutoresHorizontal}{%
+    \begin{tabular}[t]{ *{\value{autoresCount}}{c} }
+    \the\autTabNombre \\%
+\ifthenelse{\boolean{showPadron}}{
+    \the\autTabPadron \\%
+}{}
+    \the\autTabEmail %
+    \end{tabular}%
+}
+
+\newcommand{\tablaRevisiones}{%
+\ifthenelse{\boolean{showRevisiones}}{%
+	\bigskip
+	\textbf{\huge Historial de Revisiones}\\
+	\smallskip
+    \begin{tabular}[t]{|l| c |l| *{\value{revisionesCount}}{c} }
+        \hline
+        \multicolumn{1}{|c|}{\rule{0pt}{1.2em} Fecha} & Revisor &  \multicolumn{1}{|c|}{Detalle} \\[0.2em]%
+        \hline%
+        \the\revilist%
+        \hline
+    \end{tabular}%
+}{}%
+}
+
+% ----- Codigo para manejo de errores --------------------------------------
+
+\def\se{\let\ifsetuperror\iftrue}
+\def\ifsetuperror{%
+    \let\ifsetuperror\iffalse
+    \ifx\Materia\relax\se\errhelp={Te olvidaste de proveer una \materia{}.}\fi
+    \edef\mlist{\the\autlist}\ifx\mlist\empty\se%
+    \errhelp={Tenes que proveer al menos un \autor{nombre}{padron}{email}.}\fi
+    \expandafter\ifsetuperror}
+
+\def\aftermaketitle{%
+  \setcounter{page}{1}
+}
+
+% ----- \maketitletxt correspondiente a la versión v0.2.1 (texto v0.2 + fecha ) ---------
+
+\def\maketitletxt{%
+    \ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
+    \thispagestyle{empty}
+    \begin{center}
+    \vspace*{\stretch{2}}
+    {\LARGE\textbf{\Materia}}\\[1em]
+    \ifx\Subtema\relax\else{\Large \Tipoapunte}\\[0.5em]\fi
+    \ifx\Fecha\relax\else{\Large \Fecha}\\[0.5em]\fi
+    \par\vspace{\stretch{1}}
+    {\large Facultad de Ingenier\'ia}\\[0.5em]
+    {\large Universidad de Buenos Aires}
+    \par\vspace{\stretch{3}}
+    {\Large \textbf{\Tema}}\\[0.8em]
+    {\Large \Subtema}
+    \par\vspace{\stretch{3}}
+    \tablaAutores
+    \end{center}
+    \vspace*{\stretch{3}}
+    \newpage
+    
+    \tablaRevisiones
+
+    \newpage\aftermaketitle}
+
+% ----- \maketitletxtlogo correspondiente v0.2.1 (texto con fecha y logo) ---------
+
+\def\maketitletxtlogo{%
+    \ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
+    \thispagestyle{empty}
+    \begin{center}
+    \ifx\Logoimagefile\relax\else\includegraphics{\Logoimagefile}\fi \hfill \includegraphics{logo_dc.jpg}\\[1em]
+    \vspace*{\stretch{2}}
+    {\LARGE\textbf{\Materia}}\\[1em]
+    \ifx\Subtema\relax\else{\Large \Tipoapunte}\\[0.5em]\fi
+    \ifx\Fecha\relax\else{\large \Fecha}\\[0.5em]\fi
+    \par\vspace{\stretch{1}}
+    {\large Facultad de Ingenier\'ia}\\[0.5em]
+    {\large Universidad de Buenos Aires}
+    \par\vspace{\stretch{3}}
+    {\Large \textbf{\Tema}}\\[0.8em]
+    {\Large \Subtema}
+    \par\vspace{\stretch{3}}
+    \tablaAutores
+    \end{center}
+    \vspace*{\stretch{4}}
+    
+    \newpage
+    \tablaRevisiones
+
+    \newpage\aftermaketitle}
+
+% ----- \maketitlegraf correspondiente a la versión v0.3 (gráfica) -------------
+
+\def\maketitlegraf{%
+    \ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
+%
+    \thispagestyle{empty}
+
+    \ifx\Logoimagefile\relax\else\includegraphics{\Logoimagefile}\fi \hfill \includegraphics{logo_fiuba.pdf}
+
+    \vspace*{.06 \textheight}
+
+    \noindent \textbf{\Huge \Materia}  \medskip \\
+    \ifx\Tipoapunte\relax\else\noindent\textbf{\Large \Tipoapunte} \\ \fi%
+    \noindent \rule{\textwidth}{1 pt}
+
+    \medskip%
+    \begin{center}
+        \ifx\Tema\relax\else\textbf{\Large \Tema}\par\bigskip\fi
+	\ifx\Subtema\relax\else\textbf{\large \Subtema}\par\bigskip\fi
+
+        \tablaAutores
+
+
+    \end{center}%
+    \vfill%
+%
+    \begin{minipage}[t]{\textwidth}
+        \begin{minipage}[t]{.55 \textwidth}
+            \includegraphics{logo_uba.jpg}
+        \end{minipage}%%
+        \begin{minipage}[b]{.45 \textwidth}
+            \textbf{\textsf{Facultad de Ingenier\'ia}} \\
+            \textsf{Universidad de Buenos Aires} \\
+            {\scriptsize %
+                Av. Paseo Col\'on 850 - C1063ACV \\
+            Ciudad Aut\'onoma de Buenos Aires - Rep. Argentina \\
+                Tel: +54 (11) 4343-0893 / 4343-0092 \\
+            http://www.fi.uba.ar \\
+            }
+        \end{minipage}
+    \end{minipage}%
+%
+    \newpage
+    
+    \tablaRevisiones
+
+    \newpage\aftermaketitle}
+
+% ----- Reemplazamos el comando \maketitle de LaTeX con el nuestro ---------
+\renewcommand{\maketitle}{\maketitlegraf}
+
+% ----- Dependiendo de las opciones ---------
+%
+% opciones:
+%   txt     : caratula solo texto.
+%   txtlogo : caratula txt con logo de FIUBA y un logo personalizado (opcional).
+%   graf    : (default) caratula grafica con logo de FIUBA, UBA y personalizado (opcional).
+%
+\@makeother\*% some package redefined it as a letter (as color.sty)
+%
+% Layout general de la caratula
+%
+\DeclareOption{txt}{\renewcommand{\maketitle}{\maketitletxt}}
+\DeclareOption{txtlogo}{\renewcommand{\maketitle}{\maketitletxtlogo}}
+\DeclareOption{graf}{\renewcommand{\maketitle}{\maketitlegraf}}
+%
+% Etiqueta Autores o Editores
+%
+\DeclareOption{autor}{\renewcommand{\LabelAutores}{Autor}}
+\DeclareOption{editor}{\renewcommand{\LabelAutores}{Editor}}
+%
+% Formato tabla de autores
+%
+\DeclareOption{autVert}{\renewcommand{\tablaAutores}{\tablaAutoresVertical}}
+\DeclareOption{autHoriz}{\renewcommand{\tablaAutores}{\tablaAutoresHorizontal}}
+\DeclareOption{conPadron}{\setboolean{showPadron}{true}}
+\DeclareOption{sinPadron}{\setboolean{showPadron}{false}}
+\DeclareOption{showRevisiones}{\setboolean{showRevisiones}{true}}
+\DeclareOption{hideRevisiones}{\setboolean{showRevisiones}{false}}
+%
+% Opciones predeterminadas
+%
+\ExecuteOptions{autVert}%
+\ExecuteOptions{graf}%
+\ExecuteOptions{autor}%
+\ExecuteOptions{conPadron}%
+\ExecuteOptions{hideRevisiones}%
+%
+\ProcessOptions\relax

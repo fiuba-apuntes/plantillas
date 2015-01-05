@@ -1,26 +1,20 @@
-# Apuntes-FIUBA
+# Plantillas FIUBA Apuntes
 
-Recursos LaTeX para el proyecto Apuntes FIUBA
+Aquí encontrarán plantillas y recursos LaTeX para el proyecto Apuntes FIUBA y otros fines
 
-## Paquete: caratula
+## [Plantilla para FIUBA Apuntes](fiuba-apuntes)
 
-Paquete para generar carátulas de los apuntes.
+En el directorio [fiuba-apuntes](fiuba-apuntes) se encuentra una plantilla para los apuntes del proyecto FIUBA Apuntes.
 
-### Uso
+La plantilla incluye
+- Caratula
+- Página explicativa sobre el proyecto
+- Página con los colaboradores de ese apunte
 
-La manera más sencilla de usar la carátula:
+## [Plantilla para informe de trabajo práctico](informe-trabajo-practico)
 
-1. es copiar los siguientes archivos al directorio donde esté el resto de los *.tex
-   - caratula.sty
-   - logo_fiuba.jpg
-   - logo_uba.jpg
-2. basarse en el ejemplo
+En el directorio [informe-trabajo-practico](informe-trabajo-practico) se encuentra una plantilla para informes de trabajos prácticos.
 
-![Ejemplo de carátula](src/caratula/ejemplo_apunte_thumbnail.png?raw=true "Ejemplo de carátula")
-
-### Ejemplos
-
-- ejemplo_apunte [.tex](src/caratula/ejemplo_apunte.tex?raw=true) [.lyx](src/caratula/ejemplo_apunte.lyx?raw=true) [.pdf](caratula/ejemplo_apunte.pdf?raw=true)
-
-### Agradecimientos
-Este paquete está basado en la versión del paquete caratula v 0.5 para documentos del DC (FCEyN), hecha por Brian Cardiff y Nico Rosner. [Codigo Fuente Base](http://githalytics.com/bcardiff/dc-tex)
+La plantilla incluye
+- Caratula
+- Historial de revisiones
