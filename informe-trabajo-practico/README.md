@@ -12,7 +12,7 @@ La manera más sencilla de usar la carátula:
    - caratula.sty
    - logo_fiuba.jpg
    - logo_uba.jpg
-2. basarse en el (ejemplo)[informe-trabajo-practico.tex?raw=true]
+2. basarse en el [ejemplo](informe-trabajo-practico.tex?raw=true)
 
 ![Ejemplo de carátula](ejemplo-caratula-trabajo-practico.png?raw=true "Ejemplo de carátula")
 
