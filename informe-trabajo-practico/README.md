@@ -12,13 +12,13 @@ La manera más sencilla de usar la carátula:
    - caratula.sty
    - logo_fiuba.jpg
    - logo_uba.jpg
-2. basarse en el ejemplo
+2. basarse en el (ejemplo)[informe-trabajo-practico.tex?raw=true]
 
 ![Ejemplo de carátula](ejemplo-caratula-trabajo-practico.png?raw=true "Ejemplo de carátula")
 
 ### Ejemplos
 
-- ejemplo_apunte [.tex](ejemplo-informe-trabajo-practico.tex?raw=true) [.pdf](ejemplo-informe-trabajo-practico.pdf?raw=true)
+- informe-trabajo-practico [.tex](informe-trabajo-practico.tex?raw=true) [.pdf](informe-trabajo-practico.pdf?raw=true)
 
 ### Agradecimientos
 Este paquete está basado en la versión del paquete caratula v 0.5 para documentos del DC (FCEyN), hecha por Brian Cardiff y Nico Rosner. [Codigo Fuente Base](https://github.com/bcardiff/dc-tex)
