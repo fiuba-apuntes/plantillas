@@ -6,6 +6,7 @@
 \usepackage{hyperref} % Permite incluir enlaces en los archivos.
 \usepackage{lastpage} % Paquete para poder contabilizar el total de páginas del documento.
 \usepackage{fancyhdr} % Permite personalizar los header y footer del documento.
+\usepackage{caratula}
 
 % Define los estilos de los enlaces interpretados por el paquete hyperref
 \hypersetup{
@@ -31,15 +32,22 @@
 \fancyfoot[OL]{Página \thepage\ de \pageref{LastPage}} % Numero de pagina a la izquierda
 \fancyfoot[OR]{Nombre del apunte} % Nombre del apunte a la derecha
 
-\title{Plantilla de apunte de FIUBA Apuntes}
+% Configura la caratula
+\materia{Materia del Apunte}
+\tipoapunte{Tipo de Apunte (Teórico o Práctico)}
+\tema{Tema de la Materia}
+\subtema{Subtema}
+\autor{FIUBA Apuntes}{}{}
 
 \begin{document}
-\subfile{caratula.tex}
-\newpage
+\maketitle
+
 \tableofcontents
+
 \subfile{sobre-el-proyecto.tex} % Inlcuye informacion sobre el proyecto FIUBA Apuntes
 
 % Agregar acá el contenido del apunte
 
 \subfile{colaboradores.tex} % Incluye la lista de colaboradores del apunte
+
 \end{document}

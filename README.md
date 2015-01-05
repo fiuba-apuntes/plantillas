@@ -2,12 +2,12 @@
 
 Aquí encontrarán plantillas y recursos LaTeX para el proyecto Apuntes FIUBA y otros fines
 
-## [Plantilla para FIUBA Apuntes](fiuba-apuntes)
+## [Plantilla para apunte](apunte)
 
-En el directorio [fiuba-apuntes](fiuba-apuntes) se encuentra una plantilla para los apuntes del proyecto FIUBA Apuntes.
+En el directorio [apunte](apunte) se encuentra una plantilla para apuntes, utilizado en el proyecto FIUBA Apuntes.
 
 La plantilla incluye
-- Caratula
+- Carátula
 - Página explicativa sobre el proyecto
 - Página con los colaboradores de ese apunte
 
