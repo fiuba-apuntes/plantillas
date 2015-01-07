@@ -1,12 +1,13 @@
 \documentclass[a4paper, twoside]{article}
 \usepackage[utf8]{inputenc} % Especifica la codificación de caracteres de los documentos.
 \usepackage[spanish]{babel} % Indica que el documento se escribirá en español.
-\usepackage[headheight=16pt,scale={0.7,0.8},hoffset=0.5cm]{geometry}
+\usepackage[top=3cm, bottom=2.5cm, inner=1.5cm, outer=2.5cm]{geometry} % Márgenes personalizados
 \usepackage{subfiles} % Paquete para incluir el preambulo en los sub archivos.
+\usepackage{afterpage} % Permite añadir páginas despues de una página dada.
 \usepackage{hyperref} % Permite incluir enlaces en los archivos.
 \usepackage{lastpage} % Paquete para poder contabilizar el total de páginas del documento.
 \usepackage{fancyhdr} % Permite personalizar los header y footer del documento.
-\usepackage{caratula}
+\usepackage{caratula} % Caratula personalizada (cargada desde caratula.sty)
 
 % Define los estilos de los enlaces interpretados por el paquete hyperref
 \hypersetup{
@@ -32,21 +33,55 @@
 \fancyfoot[OL]{Página \thepage\ de \pageref{LastPage}} % Numero de pagina a la izquierda
 \fancyfoot[OR]{Nombre del apunte} % Nombre del apunte a la derecha
 
+\renewcommand{\footrulewidth}{0.4pt} % Agrego linea que separa el footer
+
+\newcommand{\nombremateria}{Materia del apunte} % Defino el comando "\nombremateria" para no harcodear el nombre en varios lugares.
+
 % Configura la caratula
-\materia{Materia del Apunte}
+\materia{\nombremateria}
 \tipoapunte{Tipo de Apunte (Teórico o Práctico)}
 \tema{Tema de la Materia}
 \subtema{Subtema}
 \autor{FIUBA Apuntes}{}{}
 
 \begin{document}
-\maketitle
+% Página en blanco agregada después de la carátula
+%\afterpage{
+%	\null
+%	\thispagestyle{empty}%
+%	\addtocounter{page}{-1}%
+%	\newpage}
+\maketitle % Genera la carátula
 
-\tableofcontents
+\tableofcontents % Genera el índice
 
 \subfile{sobre-el-proyecto.tex} % Inlcuye informacion sobre el proyecto FIUBA Apuntes
 
-% Agregar acá el contenido del apunte
+% Insertar aquí el contenido del apunte. A continuacion hay secciones a modo de ejemplo.
+
+\section{Section One}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan eros erat, bibendum porttitor elit gravida et. Phasellus vulputate scelerisque eros ut ultrices. Ut suscipit, justo ac viverra commodo, turpis massa lacinia nisl, ac commodo arcu sapien ut quam. Vestibulum sodales, erat nec molestie sagittis, orci eros posuere velit, ut sagittis purus nunc nec elit. Quisque in dolor eget quam tempor consectetur. Nam laoreet, enim venenatis facilisis pulvinar, leo tortor posuere tellus, pellentesque elementum metus risus a ex. Quisque semper id elit eu luctus. Duis commodo tincidunt vehicula. Praesent varius vel sapien semper facilisis. Integer sollicitudin urna lorem, mattis sagittis mauris varius vitae. Aenean cursus auctor ligula, in porta felis porttitor mattis. Sed et porta tellus. Donec et turpis vel erat interdum malesuada at ac elit. Aenean sed lorem venenatis, laoreet nibh vitae, sagittis massa. Etiam vel iaculis ex. Maecenas tincidunt erat eu odio tempus facilisis.
+
+In a condimentum massa, in volutpat purus. Phasellus pellentesque purus faucibus nibh tincidunt, commodo tincidunt dolor semper. Phasellus eget tincidunt elit. Aenean eu quam diam. Donec vel leo nisl. Mauris quis aliquam nulla. Proin ornare malesuada enim, sed maximus ligula congue a. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras dapibus lorem eu orci dignissim sollicitudin. 
+
+\subsection{Subsection One}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus accumsan enim ante. In hac habitasse platea dictumst. Nulla ac est ac nisl tristique pulvinar. Mauris vehicula lorem vel diam mollis, vitae mattis libero dignissim. Cras sit amet justo rutrum leo mollis efficitur vitae non sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ac enim id massa tincidunt sollicitudin. Donec scelerisque lacinia venenatis. Mauris in mauris orci. Duis mattis metus nec lorem rhoncus sollicitudin. Vestibulum vitae nisi vel mi feugiat malesuada a ac tortor.
+
+Suspendisse potenti. In at mauris in dolor interdum sodales. Nulla eget eros ipsum. Mauris aliquet turpis eu mollis elementum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec dui risus, tristique id ipsum eu, consequat suscipit turpis. Donec sagittis aliquet neque ut malesuada. Mauris nec molestie tellus. Fusce quis scelerisque quam.
+
+Vivamus congue interdum tortor. Duis facilisis sapien quis dui venenatis euismod. Mauris tristique, metus id imperdiet sodales, risus ex porta dolor, eget egestas arcu eros sed dolor. Aliquam erat volutpat. Sed eu justo justo. Quisque iaculis vestibulum urna sed fringilla. Nullam mattis vulputate tortor, at dictum metus finibus in. In luctus elit nec sem luctus imperdiet.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris tempor ipsum in dui pretium, eget sollicitudin est sagittis. Nullam viverra vulputate lorem, eu porttitor augue dictum rhoncus. Nullam risus nibh, rutrum at enim eu, rutrum malesuada metus. Sed pretium, orci non consectetur vulputate, orci magna pellentesque sem, ac aliquet sapien neque quis diam. Phasellus et dolor a nunc dapibus blandit. Suspendisse sit amet aliquet nibh, molestie mattis sapien. Cras sit amet sagittis ex. Donec nec sapien mollis, hendrerit neque sed, imperdiet augue. Sed dignissim eu eros nec aliquet. Ut convallis rutrum nunc at lacinia. 
+
+\subsection{Subsection two}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam molestie auctor hendrerit. Maecenas fermentum tortor sed condimentum rutrum. Integer tincidunt porta velit nec blandit. Morbi et gravida quam, ac volutpat tellus. Aliquam justo mauris, dignissim at interdum nec, sollicitudin et tortor. Ut finibus egestas ante, eu feugiat risus imperdiet at. Curabitur in est neque. Praesent rutrum malesuada auctor. Cras ac enim tincidunt, venenatis felis vel, condimentum ipsum. Phasellus porttitor vehicula mi a pretium.
+
+Sed a felis consequat, imperdiet velit id, euismod tellus. Nullam a dui ultricies, posuere libero at, tristique tortor. Donec tortor tortor, efficitur et dolor elementum, facilisis dignissim mi. Maecenas massa ante, pharetra sed venenatis id, sollicitudin mattis tortor. Cras auctor gravida euismod. Donec elementum mi tortor, non mollis sapien mattis eget. Nullam ut pulvinar felis. Sed sed molestie tortor. Sed nec cursus sem, ac efficitur nisi.
+
+Maecenas blandit, neque nec venenatis elementum, tellus tortor volutpat mauris, sit amet scelerisque risus mauris eu elit. Suspendisse id dignissim tortor. Curabitur euismod finibus mollis. Aliquam mattis nunc sed diam sodales tincidunt. Fusce volutpat magna sit amet nulla imperdiet aliquet. Etiam dignissim justo magna, non porttitor urna tincidunt lobortis. Sed volutpat ligula ac odio facilisis porta. Donec ut lectus condimentum, molestie mauris in, scelerisque arcu. Donec leo ipsum, eleifend et erat vitae, tristique tincidunt leo. Suspendisse id orci et elit blandit fringilla. Pellentesque interdum sapien et risus sagittis, vehicula convallis leo pulvinar. Etiam sagittis a sem sed pretium. Etiam in aliquam elit. Vestibulum tempus sit amet turpis vel faucibus. Donec feugiat imperdiet libero vitae pretium. 
 
 \subfile{colaboradores.tex} % Incluye la lista de colaboradores del apunte
 
