@@ -1,0 +1,118 @@
+% ****************************************************************************
+%  Package 'colaboradores', para agregar la sección de colaboradores a un
+%  apunte del proyecto FIUBA Apuntes.
+%
+% ****************************************************************************
+
+% ----- Informacion sobre el package para el sistema -------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{colaboradores}[2015/01/09 Para agregar la seccion de colaboradores a un apunte del proyecto FIUBA Apuntes]
+\RequirePackage{ifthen}
+
+% ----- Imprimir un mensajito al procesar un .tex que use este package -------
+
+\typeout{Cargando package 'colaboradores' (2015/01/09)}
+
+% ----- Algunas variables ----------------------------------------------------
+
+\newboolean{mostrarrevisores}
+
+% ----- Token list para colaboradores y revisores ----------------------------
+
+\newtoks\colaboradoreslist\colaboradoreslist={}
+
+\newcounter{colaboradorescount}
+\setcounter{colaboradorescount}{0}
+
+\newtoks\revisoreslist\revisoreslist={}
+
+\newcounter{revisorescount}
+\setcounter{revisorescount}{0}
+
+% ----- Comando para que el usuario agregue colaboradores --------------------
+
+\def\colaborador#1{%
+    \colaboradoreslist=\expandafter{\the\colaboradoreslist \item #1}
+    
+    \addtocounter{colaboradorescount}{1}%
+}
+
+% ----- Comando para que el usuario agregue revisores ------------------------
+
+\def\revisor#1#2{%
+    \revisoreslist=\expandafter{\the\revisoreslist \item #1 (Ultima revisión: #2)}
+
+    \addtocounter{revisorescount}{1}%
+}
+
+% ----- Macro para generar la lista de colaboradores -------------------------
+
+\newcommand{\listacolaboradores}{
+    \begin{itemize}
+    	\the\colaboradoreslist
+    \end{itemize}
+}
+
+% ----- Macro para generar la lista de revisores -----------------------------
+
+\newcommand{\listarevisores}{%
+    \begin{itemize}
+    	\the\revisoreslist
+    \end{itemize}
+}
+
+% ----- Codigo para manejo de errores ----------------------------------------
+
+\def\se{\let\ifcolaboradoreserror\iftrue}
+\def\ifcolaboradoreserror{
+    \let\ifcolaboradoreserror\iffalse
+    \edef\mlist{\the\colaboradoreslist}\ifx\mlist\empty\se%
+    \errhelp={Tenes que proveer al menos un \colaborador{nombre}.}\fi
+    \expandafter\ifcolaboradoreserror
+}
+    
+\def\se{\let\ifrevisoreserror\iftrue}
+\def\ifrevisoreserror{
+    \let\ifrevisoreserror\iffalse
+    \edef\mlist{\the\revisoreslist}\ifx\mlist\empty\se%
+    \errhelp={Tenes que proveer al menos un \revisor{nombre}{fechaultimarevision}.}\fi
+    \expandafter\ifrevisoreserror
+}
+
+% ----- Comando para crear la seccion de colaboradores -----------------------
+
+\newcommand{\seccioncolaboradores}{
+    \ifcolaboradoreserror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
+	
+	\newpage
+	\section{Colaboradores}
+    Quienes se mencionan a continuación han colaborado y aportado tanto al proyecto FIUBA Apuntes como en este apunte, redactándolo, corrigiéndolo, agregando gráficos, etc.
+
+    \listacolaboradores
+    
+    \ifthenelse{\boolean{mostrarrevisores}}{
+        \ifrevisoreserror\errmessage{No hay revisores para mostrar! Si realmente no va a cargar revisores, elimine la opción "mostrarrevisores"}\fi    
+    
+        \hfill \break
+        
+        Los siguientes profesores han colaborado revisando y sugiriendo mejoras en este apunte 
+        \listarevisores
+    }{}
+
+    \hfill \break
+    
+    ¿Querés colaborar en el proyecto? Conocé más sobre el proyecto en \href{http://fiuba-apuntes.github.io}{fiuba-apuntes.github.io}.
+}
+
+%
+\@makeother\*% some package redefined it as a letter (as color.sty)
+%
+\DeclareOption{mostrarrevisores}{\setboolean{mostrarrevisores}{true}}
+\DeclareOption{ocultarrevisores}{\setboolean{mostrarrevisores}{false}}
+%
+% Opciones predeterminadas
+%
+\ExecuteOptions{ocultarrevisores}%
+%
+\ProcessOptions\relax

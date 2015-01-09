@@ -8,6 +8,7 @@
 \usepackage{lastpage} % Paquete para poder contabilizar el total de páginas del documento.
 \usepackage{fancyhdr} % Permite personalizar los header y footer del documento.
 \usepackage{caratula} % Caratula personalizada (cargada desde caratula.sty)
+\usepackage[mostrarrevisores]{colaboradores} % Seccion de colaboradores (cargada y creada con colaboradores.sty)
 
 % Define los estilos de los enlaces interpretados por el paquete hyperref
 \hypersetup{
@@ -42,7 +43,6 @@
 \tipoapunte{Tipo de Apunte (Teórico o Práctico)}
 \tema{Tema de la Materia}
 \subtema{Subtema}
-\autor{FIUBA Apuntes}{}{}
 
 \begin{document}
 % Página en blanco agregada después de la carátula
@@ -59,13 +59,13 @@
 
 % Insertar aquí el contenido del apunte. A continuacion hay secciones a modo de ejemplo.
 
-\section{Section One}
+\section{Sección primera}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan eros erat, bibendum porttitor elit gravida et. Phasellus vulputate scelerisque eros ut ultrices. Ut suscipit, justo ac viverra commodo, turpis massa lacinia nisl, ac commodo arcu sapien ut quam. Vestibulum sodales, erat nec molestie sagittis, orci eros posuere velit, ut sagittis purus nunc nec elit. Quisque in dolor eget quam tempor consectetur. Nam laoreet, enim venenatis facilisis pulvinar, leo tortor posuere tellus, pellentesque elementum metus risus a ex. Quisque semper id elit eu luctus. Duis commodo tincidunt vehicula. Praesent varius vel sapien semper facilisis. Integer sollicitudin urna lorem, mattis sagittis mauris varius vitae. Aenean cursus auctor ligula, in porta felis porttitor mattis. Sed et porta tellus. Donec et turpis vel erat interdum malesuada at ac elit. Aenean sed lorem venenatis, laoreet nibh vitae, sagittis massa. Etiam vel iaculis ex. Maecenas tincidunt erat eu odio tempus facilisis.
 
 In a condimentum massa, in volutpat purus. Phasellus pellentesque purus faucibus nibh tincidunt, commodo tincidunt dolor semper. Phasellus eget tincidunt elit. Aenean eu quam diam. Donec vel leo nisl. Mauris quis aliquam nulla. Proin ornare malesuada enim, sed maximus ligula congue a. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras dapibus lorem eu orci dignissim sollicitudin. 
 
-\subsection{Subsection One}
+\subsection{Subsección primera}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus accumsan enim ante. In hac habitasse platea dictumst. Nulla ac est ac nisl tristique pulvinar. Mauris vehicula lorem vel diam mollis, vitae mattis libero dignissim. Cras sit amet justo rutrum leo mollis efficitur vitae non sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ac enim id massa tincidunt sollicitudin. Donec scelerisque lacinia venenatis. Mauris in mauris orci. Duis mattis metus nec lorem rhoncus sollicitudin. Vestibulum vitae nisi vel mi feugiat malesuada a ac tortor.
 
@@ -75,7 +75,7 @@ Vivamus congue interdum tortor. Duis facilisis sapien quis dui venenatis euismod
 
 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris tempor ipsum in dui pretium, eget sollicitudin est sagittis. Nullam viverra vulputate lorem, eu porttitor augue dictum rhoncus. Nullam risus nibh, rutrum at enim eu, rutrum malesuada metus. Sed pretium, orci non consectetur vulputate, orci magna pellentesque sem, ac aliquet sapien neque quis diam. Phasellus et dolor a nunc dapibus blandit. Suspendisse sit amet aliquet nibh, molestie mattis sapien. Cras sit amet sagittis ex. Donec nec sapien mollis, hendrerit neque sed, imperdiet augue. Sed dignissim eu eros nec aliquet. Ut convallis rutrum nunc at lacinia. 
 
-\subsection{Subsection two}
+\subsection{Subsección segunda}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam molestie auctor hendrerit. Maecenas fermentum tortor sed condimentum rutrum. Integer tincidunt porta velit nec blandit. Morbi et gravida quam, ac volutpat tellus. Aliquam justo mauris, dignissim at interdum nec, sollicitudin et tortor. Ut finibus egestas ante, eu feugiat risus imperdiet at. Curabitur in est neque. Praesent rutrum malesuada auctor. Cras ac enim tincidunt, venenatis felis vel, condimentum ipsum. Phasellus porttitor vehicula mi a pretium.
 
@@ -83,6 +83,18 @@ Sed a felis consequat, imperdiet velit id, euismod tellus. Nullam a dui ultricie
 
 Maecenas blandit, neque nec venenatis elementum, tellus tortor volutpat mauris, sit amet scelerisque risus mauris eu elit. Suspendisse id dignissim tortor. Curabitur euismod finibus mollis. Aliquam mattis nunc sed diam sodales tincidunt. Fusce volutpat magna sit amet nulla imperdiet aliquet. Etiam dignissim justo magna, non porttitor urna tincidunt lobortis. Sed volutpat ligula ac odio facilisis porta. Donec ut lectus condimentum, molestie mauris in, scelerisque arcu. Donec leo ipsum, eleifend et erat vitae, tristique tincidunt leo. Suspendisse id orci et elit blandit fringilla. Pellentesque interdum sapien et risus sagittis, vehicula convallis leo pulvinar. Etiam sagittis a sem sed pretium. Etiam in aliquam elit. Vestibulum tempus sit amet turpis vel faucibus. Donec feugiat imperdiet libero vitae pretium. 
 
-\subfile{colaboradores.tex} % Incluye la lista de colaboradores del apunte
+% Incluir los nombres de las personas que han colaborado en la creación del apunte
+\colaborador{Colaborador 1}
+\colaborador{Colaborador 2}
+\revisor{Dr. Profesor}{10/01/2015}
+\seccioncolaboradores % Crea la seccion de colaboradres
+
+% Bibliografía utilizada en el apunte
+\newpage
+\renewcommand\refname{Bibliografía}
+\begin{thebibliography}{X}
+	\bibitem{Baz} \textsc{Bazaraa, M.S., J.J. Jarvis} y \textsc{H.D. Sherali}, \textit{Programación lineal y flujo en redes}, segunda edición, Limusa, México, DF, 2004.
+	\bibitem{Dan} \textsc{Dantzig, G.B.} y \textsc{P. Wolfe}, <<Decomposition principle for linear programs>>, \textit{Operations Research}, \textbf{8}, págs. 101--111, 1960.
+\end{thebibliography}
 
 \end{document}
