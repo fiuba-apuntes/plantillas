@@ -1,0 +1,82 @@
+% **************************************************************************
+%  Package 'changelog', para registrar cambios en un documento del proyecto
+%  ``apuntes-fiuba''
+%
+% **************************************************************************
+
+% ----- Informacion sobre el package para el sistema -----------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{changelog}[2015/01/08 Para registrar cambios en un documento]
+\RequirePackage{ifthen}
+\usepackage[pdftex]{graphicx}
+
+% ----- Imprimir un mensajito al procesar un .tex que use este package -----
+
+\typeout{Cargando package 'changelog' (2015/01/08)}
+
+% ----- Algunas variables --------------------------------------------------
+
+% ----- Comandos para que el usuario defina las variables ------------------
+
+\newtoks\revilist\revilist={}
+
+\newcounter{revisionesCount}
+\setcounter{revisionesCount}{0}
+\newtoks\reviTabRevisor\reviTabRevisor={}
+\newtoks\reviTabFecha\reviTabFecha={}
+\newtoks\reviTabDetalle\reviTabDetalle={}
+
+
+% ----- Comando para que el usuario agregue autores --------------------
+
+\def\revision#1#2#3{%
+    \revilist=\expandafter{\the\revilist\rule{0pt}{1.2em}\tt#1&\tt#2&\tt #3\\[0.2em]}%
+
+    \ifthenelse{\value{revisionesCount} > 0}{%
+        \reviTabFecha=\expandafter{\the\reviTabFecha & #1}%
+        \reviTabDetalle=\expandafter{\the\reviTabDetalle & #3}%
+        \reviTabRevisor=\expandafter{\the\reviTabRevisor & #2}%
+    }{
+        \reviTabFecha=\expandafter{\the\reviTabFecha #1}%
+        \reviTabDetalle=\expandafter{\the\reviTabDetalle  #3}%
+        \reviTabRevisor=\expandafter{\the\reviTabRevisor #2}%
+    }%
+    \addtocounter{revisionesCount}{1}%
+}
+
+
+% ----- Macro para generar la tabla de autores -------------------------
+
+\newcommand{\tablaRevisiones}{%
+	\bigskip
+	\textbf{\huge Historial de Revisiones}\\
+	\smallskip
+    \begin{tabular}[t]{|l| c |l| *{\value{revisionesCount}}{c} }
+        \hline
+        \multicolumn{1}{|c|}{\rule{0pt}{1.2em} Fecha} & \multicolumn{1}{|c|}{Detalle} & Revisor \\[0.2em]%
+        \hline%
+        \the\revilist%
+        \hline
+    \end{tabular}%
+}
+
+% ----- Codigo para contar paginas luego de las revisiones --------------------------------------
+
+\def\aftermaketitle{%
+  \setcounter{page}{1}
+}
+
+% ----- Comando \makechangelog - para que el usuario cree la tabla de revisiones ---------
+
+\def\makechangelog{
+    \begin{center}
+      \tablaRevisiones
+    \end{center}
+    \vspace*{\stretch{3}}
+ 
+    \newpage\aftermaketitle}
+
+\@makeother\*% some package redefined it as a letter (as color.sty)
+%
+\ProcessOptions\relax
