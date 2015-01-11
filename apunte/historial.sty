@@ -1,0 +1,61 @@
+% **************************************************************************
+%  Package 'historial', para registrar cambios en un documento del proyecto
+%  ``apuntes-fiuba''
+%
+% **************************************************************************
+
+% ----- Informacion sobre el package para el sistema -----------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{historial}[2015/01/09 Para registrar la historia de cambios en un documento]
+\RequirePackage{ifthen}
+
+% ----- Imprimir un mensajito al procesar un .tex que use este package -----
+
+\typeout{Cargando package 'historial' (2015/01/09)}
+
+% ----- Comandos para que el usuario defina las variables ------------------
+
+\newtoks\revilist\revilist={}
+
+\newcounter{revisionesCount}
+\setcounter{revisionesCount}{0}
+
+% ----- Comando para que el usuario agregue autores --------------------
+
+\def\revision#1#2{
+    \revilist=\expandafter{\the\revilist\rule{0pt}{1.2em}\textit{#1} & #2 \\[0.2em]}
+
+    \addtocounter{revisionesCount}{1}
+}
+
+
+% ----- Macro para generar la tabla de autores -------------------------
+
+\newcommand{\tablaRevisiones}{
+	\smallskip
+    \begin{tabular}[t]{p{0.1\textwidth} p{0.86\textwidth}}
+        \the\revilist
+    \end{tabular}
+}
+
+% ----- Comando \makehistorial - para que el usuario cree la tabla de revisiones ---------
+
+\def\makehistorial{
+	\newpage
+	\newcommand{\historialsectionname}{Historial de cambios}
+	\section*{\historialsectionname}
+	\markboth{}{\uppercase{\historialsectionname}}
+	\addcontentsline{toc}{section}{\historialsectionname}
+
+    \begin{center}
+      \tablaRevisiones
+    \end{center}
+    \vspace*{\stretch{3}}
+ 
+    \newpage
+}
+
+\@makeother\*% some package redefined it as a letter (as color.sty)
+%
+\ProcessOptions\relax

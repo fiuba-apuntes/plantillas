@@ -82,11 +82,15 @@
 
 % ----- Comando para crear la seccion de colaboradores -----------------------
 
-\newcommand{\seccioncolaboradores}{
+\newcommand{\makeseccioncolaboradores}{
     \ifcolaboradoreserror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
 	
 	\newpage
-	\section{Colaboradores}
+	\newcommand{\colaboradoressectionname}{Colaboradores}
+	\section*{\colaboradoressectionname}
+	\markboth{}{\uppercase{\colaboradoressectionname}}
+	\addcontentsline{toc}{section}{\colaboradoressectionname}
+	
     Quienes se mencionan a continuación han colaborado y aportado tanto al proyecto FIUBA Apuntes como en este apunte, redactándolo, corrigiéndolo, agregando gráficos, etc.
 
     \listacolaboradores

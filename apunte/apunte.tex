@@ -9,6 +9,7 @@
 \usepackage{fancyhdr} % Permite personalizar los header y footer del documento.
 \usepackage{caratula} % Caratula personalizada (cargada desde caratula.sty)
 \usepackage[mostrarrevisores]{colaboradores} % Seccion de colaboradores (cargada y creada con colaboradores.sty)
+\usepackage{historial} % Seccion de historial de cambios (cargada y creada con historial.sty)
 
 % Define los estilos de los enlaces interpretados por el paquete hyperref
 \hypersetup{
@@ -83,18 +84,25 @@ Sed a felis consequat, imperdiet velit id, euismod tellus. Nullam a dui ultricie
 
 Maecenas blandit, neque nec venenatis elementum, tellus tortor volutpat mauris, sit amet scelerisque risus mauris eu elit. Suspendisse id dignissim tortor. Curabitur euismod finibus mollis. Aliquam mattis nunc sed diam sodales tincidunt. Fusce volutpat magna sit amet nulla imperdiet aliquet. Etiam dignissim justo magna, non porttitor urna tincidunt lobortis. Sed volutpat ligula ac odio facilisis porta. Donec ut lectus condimentum, molestie mauris in, scelerisque arcu. Donec leo ipsum, eleifend et erat vitae, tristique tincidunt leo. Suspendisse id orci et elit blandit fringilla. Pellentesque interdum sapien et risus sagittis, vehicula convallis leo pulvinar. Etiam sagittis a sem sed pretium. Etiam in aliquam elit. Vestibulum tempus sit amet turpis vel faucibus. Donec feugiat imperdiet libero vitae pretium. 
 
-% Incluir los nombres de las personas que han colaborado en la creación del apunte
-\colaborador{Colaborador 1}
-\colaborador{Colaborador 2}
-\revisor{Dr. Profesor}{10/01/2015}
-\seccioncolaboradores % Crea la seccion de colaboradres
-
 % Bibliografía utilizada en el apunte
 \newpage
-\renewcommand\refname{Bibliografía}
+\newcommand{\bibliographyname}{Bibliografía} % Defino el nombre de la sección de la bibliografía
+\addcontentsline{toc}{section}{\bibliographyname} % Agrego la bibliografía en el índice
+\renewcommand\refname{\bibliographyname} % Renombro a la bibliografía (por default es 'Referencias')
 \begin{thebibliography}{X}
 	\bibitem{Baz} \textsc{Bazaraa, M.S., J.J. Jarvis} y \textsc{H.D. Sherali}, \textit{Programación lineal y flujo en redes}, segunda edición, Limusa, México, DF, 2004.
 	\bibitem{Dan} \textsc{Dantzig, G.B.} y \textsc{P. Wolfe}, <<Decomposition principle for linear programs>>, \textit{Operations Research}, \textbf{8}, págs. 101--111, 1960.
 \end{thebibliography}
+
+% Incluir los nombres de las personas que han colaborado en la creación del apunte
+\colaborador{Colaborador 1}
+\colaborador{Colaborador 2}
+\revisor{Dr. Profesor}{10/01/2015}
+\makeseccioncolaboradores % Crea la seccion de colaboradres
+
+% Incluir el historial de cambios
+\revision{28/12/2014}{Versión inicial con secciones y texto de ejemplo.}
+\revision{10/01/2015}{Se agregó una carátula personalizada, una sección con información del proyecto FIUBA Apuntes, la sección de colaboradores del apunte, sección de historial de cambios, ejemplo de bibliografía, ajuste de márgenes, encabezado y pie de página.}
+\makehistorial
 
 \end{document}
