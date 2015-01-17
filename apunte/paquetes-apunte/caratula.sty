@@ -11,7 +11,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{caratula}[2015/01/04 Para componer caratulas de apuntes de FIUBA]
 \RequirePackage{ifthen}
-\usepackage[pdftex]{graphicx}
+\RequirePackage[pdftex]{graphicx}
+\RequirePackage{hyperref}
 
 % ----- Imprimir un mensajito al procesar un .tex que use este package -----
 
@@ -38,53 +39,64 @@
 % ----- Codigo para manejo de errores --------------------------------------
 
 \def\se{\let\ifsetuperror\iftrue}
-\def\ifsetuperror{%
+\def\ifsetuperror{
     \let\ifsetuperror\iffalse
     \ifx\Materia\relax\se\errhelp={Te olvidaste de proveer una \materia{}.}\fi
-    \expandafter\ifsetuperror}
+    \expandafter\ifsetuperror
+}
 
-\def\aftermaketitle{%
+\def\aftermaketitle{
   \setcounter{page}{1}
 }
 
-\def\maketitlegraf{%
+\def\maketitlegraf{
     \ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
-%
-    \thispagestyle{empty}
 
-    \ifx\Logoimagefile\relax\else\includegraphics{\Logoimagefile}\fi \hfill \includegraphics{logo_fiuba.pdf}
-
-    \vspace*{.06 \textheight}
-
-    \noindent \textbf{\Huge \Materia}  \medskip \\
-    \ifx\Tipoapunte\relax\else\noindent\textbf{\Large \Tipoapunte} \\ \fi%
-    \noindent \rule{\textwidth}{1 pt}
-
-    \medskip%
+    %\thispagestyle{empty}
+    \begin{titlepage}
     \begin{center}
-        \ifx\Tema\relax\else\textbf{\Large \Tema}\par\bigskip\fi
-	\ifx\Subtema\relax\else\textbf{\large \Subtema}\par\bigskip\fi
 
-    \end{center}%
-    \vfill%
+        \vspace*{\fill}
+
+        \ifx\Logoimagefile\relax\else\includegraphics{\Logoimagefile}\fi \includegraphics{logo_fiuba.pdf}~\\[0.06\textheight]
+        % Reemplazar el logo_fiuba.pdf por el logo de FIUBA Apuntes
+
+		\rule{\textwidth}{1 pt} \\[0.5cm]
+        \textbf{\Huge \Materia}  \bigskip \\
+        \ifx\Tipoapunte\relax\else\textbf{\Large \Tipoapunte} \\ \fi
+        \rule{\textwidth}{1 pt} \\[0.4cm]
+
+        \medskip
+
+        \ifx\Tema\relax\else\textbf{\Large \Tema}\par\bigskip\fi
+        \ifx\Subtema\relax\else\textbf{\large \Subtema}\par\bigskip\fi
+
+        \vspace*{\fill}
 %
-    \begin{minipage}[t]{\textwidth}
-        \begin{minipage}[t]{.55 \textwidth}
-            \includegraphics{logo_uba.jpg}
-        \end{minipage}%%
-        \begin{minipage}[b]{.45 \textwidth}
-            \textbf{\textsf{Facultad de Ingenier\'ia}} \\
-            \textsf{Universidad de Buenos Aires} \\
-            {\scriptsize %
-                Av. Paseo Col\'on 850 - C1063ACV \\
-            Ciudad Aut\'onoma de Buenos Aires - Rep. Argentina \\
-                Tel: +54 (11) 4343-0893 / 4343-0092 \\
-            http://www.fi.uba.ar \\
-            }
-        \end{minipage}
-    \end{minipage}%
-%
-    \newpage\aftermaketitle}
+%        \begin{minipage}[t]{\textwidth}
+%            \begin{minipage}[t]{.55 \textwidth}
+%                \includegraphics{logo_uba.jpg}
+%            \end{minipage}
+%            \begin{minipage}[b]{.45 \textwidth}
+%                \textbf{\textsf{Facultad de Ingeniería}} \\
+%                \textsf{Universidad de Buenos Aires} \\
+%                {\scriptsize
+%                    Av. Paseo Colón 850 - C1063ACV \\
+%                    Ciudad Autónoma de Buenos Aires - Rep. Argentina \\
+%                    Tel: +54 (11) 4343-0893 / 4343-0092 \\
+%                    http://www.fi.uba.ar \\
+%                }
+%            \end{minipage}
+%        \end{minipage}
+    
+    {\large \href{http://fiuba-apuntes.github.io}{\includegraphics[scale=0.28]{GitHub-Mark-32px.png} fiuba-apuntes.github.io}}    
+    
+    \end{center}
+    \end{titlepage}
+
+    \newpage
+    \aftermaketitle
+}
 
 % ----- Reemplazamos el comando \maketitle de LaTeX con el nuestro ---------
 \renewcommand{\maketitle}{\maketitlegraf}
@@ -102,6 +114,6 @@
 %
 % Opciones predeterminadas
 %
-\ExecuteOptions{graf}%
+\ExecuteOptions{graf}
 %
 \ProcessOptions\relax

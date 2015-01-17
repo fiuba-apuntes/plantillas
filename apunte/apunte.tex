@@ -7,9 +7,13 @@
 \usepackage{hyperref} % Permite incluir enlaces en los archivos.
 \usepackage{lastpage} % Paquete para poder contabilizar el total de páginas del documento.
 \usepackage{fancyhdr} % Permite personalizar los header y footer del documento.
-\usepackage{caratula} % Caratula personalizada (cargada desde caratula.sty)
-\usepackage[mostrarrevisores]{colaboradores} % Seccion de colaboradores (cargada y creada con colaboradores.sty)
-\usepackage{historial} % Seccion de historial de cambios (cargada y creada con historial.sty)
+
+% Defino la ruta de los paquetes personalizados para el apunte
+\newcommand{\rutapaquetes}{./paquetes-apunte}
+
+\usepackage{\rutapaquetes/caratula} % Caratula personalizada (cargada desde caratula.sty)
+\usepackage[mostrarrevisores]{\rutapaquetes/colaboradores} % Seccion de colaboradores (cargada y creada con colaboradores.sty)
+\usepackage{\rutapaquetes/historial} % Seccion de historial de cambios (cargada y creada con historial.sty)
 
 % Define los estilos de los enlaces interpretados por el paquete hyperref
 \hypersetup{
@@ -19,6 +23,9 @@
     filecolor=magenta, % color of file links
     urlcolor=blue,     % color of external links
 }
+
+% Define los directorios de las imágenes y gráficos
+\graphicspath{ {./} {\rutapaquetes/} }
 
 % Define el pagestyle personalizado
 \pagestyle{fancy}
@@ -56,7 +63,7 @@
 
 \tableofcontents % Genera el índice
 
-\subfile{sobre-el-proyecto.tex} % Inlcuye informacion sobre el proyecto FIUBA Apuntes
+\subfile{\rutapaquetes/sobre-el-proyecto.tex} % Inlcuye informacion sobre el proyecto FIUBA Apuntes
 
 % Insertar aquí el contenido del apunte. A continuacion hay secciones a modo de ejemplo.
 
