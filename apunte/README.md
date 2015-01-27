@@ -52,6 +52,7 @@ Los comandos que dispone este paquete son:
 \maketitle % Genera la carátula (reemplaza al comando original)
 ```
 
+### Ejemplo
 ![Ejemplo de carátula](ejemplo-caratula-apunte.png?raw=true "Ejemplo de carátula")
 
 ### Agradecimientos
@@ -97,4 +98,5 @@ Los comandos que dispone este paquete son:
 \makeseccioncolaboradores % Genera la sección de colaboradores
 ```
 
+### Ejemplo
 ![Ejemplo de sección colaboradores](ejemplo-colaboradores-apunte.png?raw=true "Ejemplo de sección colaboradores")

@@ -52,14 +52,11 @@
 \def\maketitlegraf{
     \ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
 
-    %\thispagestyle{empty}
     \begin{titlepage}
     \begin{center}
-
         \vspace*{\fill}
 
-        \ifx\Logoimagefile\relax\else\includegraphics{\Logoimagefile}\fi \includegraphics{logo_fiuba.pdf}~\\[0.06\textheight]
-        % Reemplazar el logo_fiuba.pdf por el logo de FIUBA Apuntes
+        \ifx\Logoimagefile\relax\else\includegraphics{\Logoimagefile}\fi \includegraphics[scale=0.18]{fiuba_apuntes.png}~\\[0.06\textheight]
 
 		\rule{\textwidth}{1 pt} \\[0.5cm]
         \textbf{\Huge \Materia}  \bigskip \\
@@ -72,24 +69,8 @@
         \ifx\Subtema\relax\else\textbf{\large \Subtema}\par\bigskip\fi
 
         \vspace*{\fill}
-%
-%        \begin{minipage}[t]{\textwidth}
-%            \begin{minipage}[t]{.55 \textwidth}
-%                \includegraphics{logo_uba.jpg}
-%            \end{minipage}
-%            \begin{minipage}[b]{.45 \textwidth}
-%                \textbf{\textsf{Facultad de Ingeniería}} \\
-%                \textsf{Universidad de Buenos Aires} \\
-%                {\scriptsize
-%                    Av. Paseo Colón 850 - C1063ACV \\
-%                    Ciudad Autónoma de Buenos Aires - Rep. Argentina \\
-%                    Tel: +54 (11) 4343-0893 / 4343-0092 \\
-%                    http://www.fi.uba.ar \\
-%                }
-%            \end{minipage}
-%        \end{minipage}
     
-    {\large \href{http://fiuba-apuntes.github.io}{\includegraphics[scale=0.28]{GitHub-Mark-32px.png} fiuba-apuntes.github.io}}    
+    	{\large \href{http://fiuba-apuntes.github.io}{\includegraphics[scale=0.28]{GitHub-Mark-32px.png} fiuba-apuntes.github.io}}    
     
     \end{center}
     \end{titlepage}
