@@ -12,6 +12,7 @@
 \ProvidesPackage{caratula}[2015/01/04 Para componer caratulas de apuntes de FIUBA]
 \RequirePackage{ifthen}
 \RequirePackage{graphicx}
+\RequirePackage[ddmmyyyy]{datetime}
 \RequirePackage{hyperref}
 
 % ----- Imprimir un mensajito al procesar un .tex que use este package -----
@@ -40,43 +41,46 @@
 
 \def\se{\let\ifsetuperror\iftrue}
 \def\ifsetuperror{
-    \let\ifsetuperror\iffalse
-    \ifx\Materia\relax\se\errhelp={Te olvidaste de proveer una \materia{}.}\fi
-    \expandafter\ifsetuperror
+	\let\ifsetuperror\iffalse
+	\ifx\Materia\relax\se\errhelp={Te olvidaste de proveer una \materia{}.}\fi
+	\expandafter\ifsetuperror
 }
 
 \def\aftermaketitle{
-  \setcounter{page}{1}
+	\setcounter{page}{1}
 }
 
 \def\maketitlegraf{
-    \ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
+	\ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
+	
+	\renewcommand{\dateseparator}{/}
+	
+	\begin{titlepage}
+	\begin{center}
+		\vspace*{\fill}
 
-    \begin{titlepage}
-    \begin{center}
-        \vspace*{\fill}
-
-        \ifx\Logoimagefile\relax\else\includegraphics{\Logoimagefile}\fi \includegraphics[scale=0.18]{fiuba_apuntes.png}~\\[0.06\textheight]
+		\ifx\Logoimagefile\relax\else\includegraphics{\Logoimagefile}\fi \includegraphics[scale=0.18]{fiuba_apuntes.png}~\\[0.06\textheight]
 
 		\rule{\textwidth}{1 pt} \\[0.5cm]
-        \textbf{\Huge \Materia}  \bigskip \\
-        \ifx\Tipoapunte\relax\else\textbf{\Large \Tipoapunte} \\ \fi
-        \rule{\textwidth}{1 pt} \\[0.4cm]
+		\textbf{\Huge \Materia}  \bigskip \\
+		\ifx\Tipoapunte\relax\else\textbf{\Large \Tipoapunte} \\ \fi
+		\rule{\textwidth}{1 pt} \\[0.4cm]
 
-        \medskip
+		\medskip
 
-        \ifx\Tema\relax\else\textbf{\Large \Tema}\par\bigskip\fi
-        \ifx\Subtema\relax\else\textbf{\large \Subtema}\par\bigskip\fi
+		\ifx\Tema\relax\else\textbf{\Large \Tema}\par\bigskip\fi
+		\ifx\Subtema\relax\else\textbf{\large \Subtema}\par\bigskip\fi
 
-        \vspace*{\fill}
-    
-    	{\large \href{http://fiuba-apuntes.github.io}{\includegraphics[scale=0.28]{GitHub-Mark-32px.png} fiuba-apuntes.github.io}}    
-    
-    \end{center}
-    \end{titlepage}
+		\vspace*{\fill}
+		
+		Última actualización: \today \\[1cm]
+	
+		{\large \href{http://fiuba-apuntes.github.io}{\includegraphics[scale=0.28]{GitHub-Mark-32px.png} fiuba-apuntes.github.io}}
+	\end{center}
+	\end{titlepage}
 
-    \newpage
-    \aftermaketitle
+	\newpage
+	\aftermaketitle
 }
 
 % ----- Reemplazamos el comando \maketitle de LaTeX con el nuestro ---------
@@ -85,7 +89,7 @@
 % ----- Dependiendo de las opciones ---------
 %
 % opciones:
-%   graf    : (default) caratula grafica con logo de FIUBA, UBA y personalizado (opcional).
+%   graf: (default) caratula grafica con logo de FIUBA, UBA y personalizado (opcional).
 %
 \@makeother\*% some package redefined it as a letter (as color.sty)
 %
