@@ -21,6 +21,7 @@
 
 % ----- Algunas variables --------------------------------------------------
 
+\newboolean{mostrarlicencia}
 \let\Tema\relax
 \let\Subtema\relax
 \let\Materia\relax
@@ -73,12 +74,70 @@
 
 		\vspace*{\fill}
 		
-		Última actualización: \today \\[1cm]
-	
-		{\large \href{http://fiuba-apuntes.github.io}{\includegraphics[scale=0.28]{GitHub-Mark-32px.png} fiuba-apuntes.github.io}}
+		\noindent
+		\ifthenelse{\boolean{mostrarlicencia}}{
+			\begin{minipage}{0.48\textwidth}
+				\begin{center}
+					\includegraphics[scale=0.6]{by-sa.png} \\
+					Esta obra está bajo una Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional.
+				\end{center}
+			\end{minipage}
+			\begin{minipage}{0.48\textwidth}
+				\begin{flushright} \large
+					\href{http://fiuba-apuntes.github.io}{\includegraphics[scale=0.28]{GitHub-Mark-32px.png} fiuba-apuntes.github.io}
+				\end{flushright}
+			\end{minipage} \\[1cm]
+		}{
+			{\large \href{http://fiuba-apuntes.github.io}{\includegraphics[scale=0.28]{GitHub-Mark-32px.png} fiuba-apuntes.github.io}} \\[1cm]
+		}
+		
+		\textit{Última actualización: \today}
 	\end{center}
 	\end{titlepage}
 
+	\ifthenelse{\boolean{mostrarlicencia}}{
+	\newpage
+	\thispagestyle{empty}
+	\section*{LICENCIA}
+	\fbox{\parbox{0.9\textwidth}{Este es un resumen (y no un sustituto) de la \href{http://creativecommons.org/licenses/by-sa/4.0/legalcode}{licencia}.
+	Este resumen destaca sólo algunas de las características clave y los términos de la licencia real. No es una licencia y no tiene valor legal. Usted debe revisar cuidadosamente todos los términos y condiciones de la licencia actual antes de usar el material licenciado.}}
+	
+	\subsection*{Usted es libre para:}
+	\textbf{Compartir —} copiar y redistribuir el material en cualquier medio o formato \\
+	
+	\textbf{Adaptar —} remezclar, transformar y crear a partir del material \\
+	
+	Para cualquier propósito, incluso comercialmente \\
+	
+	El licenciante no puede revocar estas libertades en tanto usted siga los términos de la licencia \\
+	
+	\subsection*{Bajo los siguientes términos:}
+	\begin{minipage}{0.1\textwidth}
+		\begin{flushleft}
+			\includegraphics[width=0.9\textwidth]{by-large.png}
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}{0.86\textwidth}
+		\textbf{Atribución —} Debe reconocer adecuadamente la autoría, proporcionar un enlace a la licencia e indicar si se han realizado cambios. Puede hacerlo de cualquier manera razonable, pero no de una manera que sugiera que tiene el apoyo del licenciador o lo recibe por el uso que hace.
+	\end{minipage} \\[0.5cm]
+	
+	\begin{minipage}{0.1\textwidth}
+		\begin{flushleft}
+			\includegraphics[width=0.9\textwidth]{sa-large.png}
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}{0.86\textwidth}
+		\textbf{CompartirIgual —} Si usted mezcla, transforma o crea nuevo material a partir de esta obra, usted podrá distribuir su contribución siempre que utilice la misma licencia que la obra original.
+	\end{minipage} \\[0.5cm]
+	
+	\noindent \textbf{No hay restricciones adicionales —} Usted no puede aplicar términos legales ni medidas tecnológicas que restrinjan legalmente a otros hacer cualquier uso permitido por la licencia. \\
+	
+	\subsection*{Aviso:}
+	Usted no tiene que cumplir con la licencia para los materiales en el dominio público o cuando su uso esté permitido por una excepción o limitación aplicable. \\
+	
+	No se entregan garantías. La licencia podría no entregarle todos los permisos que necesita para el uso que tenga previsto. Por ejemplo, otros derechos como relativos a publicidad, privacidad, o derechos morales pueden limitar la forma en que utilice el material. \\
+	}{}
+	
 	\newpage
 	\aftermaketitle
 }
@@ -93,12 +152,11 @@
 %
 \@makeother\*% some package redefined it as a letter (as color.sty)
 %
-% Layout general de la caratula
-%
-\DeclareOption{graf}{\renewcommand{\maketitle}{\maketitlegraf}}
+\DeclareOption{mostrarlicencia}{\setboolean{mostrarlicencia}{true}}
+\DeclareOption{ocultarlicencia}{\setboolean{mostrarlicencia}{false}}
 %
 % Opciones predeterminadas
 %
-\ExecuteOptions{graf}
+\ExecuteOptions{ocultarlicencia}
 %
 \ProcessOptions\relax
