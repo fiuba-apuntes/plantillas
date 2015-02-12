@@ -40,8 +40,10 @@ Paquete para generar la carátula de los apuntes.
 ### Uso
 El paquete se debe incluir de la siguiente manera:
 ```tex
-\usepackage{\rutapaquetes/caratula}
+\usepackage[mostrarlicencia]{\rutapaquetes/caratula}
 ```
+Las opciones disponibles que posee son:
+* `mostrarlicencia` la cual muestra la licencia en la carátula y la página con el detalle de la misma. Su inverso es `ocultarlicencia` que es el valor por defecto.
 
 Los comandos que dispone este paquete son:
 ```tex
@@ -52,8 +54,12 @@ Los comandos que dispone este paquete son:
 \maketitle % Genera la carátula (reemplaza al comando original)
 ```
 
-### Ejemplo
-![Ejemplo de carátula](ejemplo-caratula-apunte.png?raw=true "Ejemplo de carátula")
+### Ejemplo de carátula con licencia
+![Ejemplo de carátula](ejemplo-caratula.png?raw=true "Ejemplo de carátula con licencia")
+
+### Ejemplo de página de licencia
+![Ejemplo de página de licencia](ejemplo-pagina-licencia.png?raw=true "Ejemplo de carátula")
+
 
 ### Agradecimientos
 Este paquete está basado en la versión del paquete caratula v 0.5 para 
@@ -88,6 +94,9 @@ El paquete se debe incluir de la siguiente manera:
 \usepackage{\rutapaquetes/colaboradores}
 ```
 
+Las opciones disponibles que posee son:
+* `mostrarrevisores` muestra la lista de revisores cargados. Si no hay revisores cargados, la compilación del archivo latex fallará. Su inverso es `ocultarrevisores` que es el valor por defecto.
+
 Los comandos que dispone este paquete son:
 ```tex
 \colaborador{Colaborador 1} % Ingresa un colaborador (es necesario proveer 
@@ -98,5 +107,23 @@ Los comandos que dispone este paquete son:
 \makeseccioncolaboradores % Genera la sección de colaboradores
 ```
 
-### Ejemplo
-![Ejemplo de sección colaboradores](ejemplo-colaboradores-apunte.png?raw=true "Ejemplo de sección colaboradores")
+### Ejemplo de sección colaboradores
+![Ejemplo de sección colaboradores](ejemplo-seccion-colaboradores.png?raw=true "Ejemplo de sección colaboradores")
+
+## Paquete `historial`
+Incluye una sección que muestra un resumen cronológico de los cambios más importantes realizados en el apunte.
+
+### Uso
+El paquete se debe incluir de la siguiente manera:
+```tex
+\usepackage{\rutapaquetes/historial}
+```
+Los comandos que dispone este paquete son:
+```tex
+\revision{28/12/2014}{Versión inicial.} % Agrega una revisión
+\revision{10/01/2015}{Múltiples correcciones.} % Agrega una revisión
+\makehistorial % Genera la sección de historial
+```
+
+### Ejemplo de sección historial
+![Ejemplo de sección historial](ejemplo-seccion-historial.png?raw=true "Ejemplo de sección historial")
