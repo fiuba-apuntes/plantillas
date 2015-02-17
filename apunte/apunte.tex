@@ -27,6 +27,8 @@
 % Define los directorios de las imágenes y gráficos
 \graphicspath{ {./} {\rutapaquetes/} }
 
+\newcommand{\nombremateria}{Materia del apunte} % Defino el comando "\nombremateria" para no harcodear el nombre en varios lugares.
+
 % Define el pagestyle personalizado
 \pagestyle{fancy}
 \fancyhf{}
@@ -36,15 +38,13 @@
 % Define header para pagina impar
 \fancyhead[OL]{\rightmark}
 % Define footer para pagina par
-\fancyfoot[EL]{Nombre del apunte} % Nombre del apunte a la izquierda
+\fancyfoot[EL]{\nombremateria} % Nombre del apunte a la izquierda
 \fancyfoot[ER]{Página \thepage\ de \pageref{LastPage}} % Numero de pagina a la derecha
 % Define footer para pagina impar
 \fancyfoot[OL]{Página \thepage\ de \pageref{LastPage}} % Numero de pagina a la izquierda
-\fancyfoot[OR]{Nombre del apunte} % Nombre del apunte a la derecha
+\fancyfoot[OR]{\nombremateria} % Nombre del apunte a la derecha
 
 \renewcommand{\footrulewidth}{0.4pt} % Agrego linea que separa el footer
-
-\newcommand{\nombremateria}{Materia del apunte} % Defino el comando "\nombremateria" para no harcodear el nombre en varios lugares.
 
 % Configura la caratula
 \materia{\nombremateria}
