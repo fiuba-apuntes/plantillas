@@ -43,7 +43,9 @@ El paquete se debe incluir de la siguiente manera:
 \usepackage[mostrarlicencia]{\rutapaquetes/caratula}
 ```
 Las opciones disponibles que posee son:
-* `mostrarlicencia` la cual muestra la licencia en la carátula y la página con el detalle de la misma. Su inverso es `ocultarlicencia` que es el valor por defecto.
+* `mostrarlicencia` la cual muestra la licencia en la carátula y la página con 
+el detalle de la misma. Su inverso es `ocultarlicencia` que es el valor por 
+defecto.
 
 Los comandos que dispone este paquete son:
 ```tex
@@ -66,14 +68,14 @@ Este paquete está basado en la versión del paquete caratula v 0.5 para
 documentos del DC (FCEyN), hecha por Brian Cardiff y Nico Rosner. 
 [Codigo Fuente Base](https://github.com/bcardiff/dc-tex)
 
-## Extensión `sobre-el-proyecto`
-Incluye una sección con información sobre el proyecto FIUBA Apuntes, detalla 
+## Extensión `acerca-del-proyecto`
+Incluye una sección con información acerca del proyecto FIUBA Apuntes, detalla 
 cómo colaborar y provee los enlaces necesarios para obtener más información.
 
-Para agregar la información sobre el proyecto se debe incluir, en el 
+Para agregar la información acerca del proyecto se debe incluir, en el 
 lugar donde se desea colocar dicha sección, el siguiente comando:
 ```tex
-\subfile{\rutapaquetes/sobre-el-proyecto.tex}
+\subfile{\rutapaquetes/acerca-del-proyecto.tex}
 ```
 
 ## Paquete `colaboradores`
@@ -111,7 +113,8 @@ Los comandos que dispone este paquete son:
 ![Ejemplo de sección colaboradores](ejemplo-seccion-colaboradores.png?raw=true "Ejemplo de sección colaboradores")
 
 ## Paquete `historial`
-Incluye una sección que muestra un resumen cronológico de los cambios más importantes realizados en el apunte.
+Incluye una sección que muestra un resumen cronológico de los cambios más 
+importantes realizados en el apunte.
 
 ### Uso
 El paquete se debe incluir de la siguiente manera:
