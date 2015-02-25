@@ -78,6 +78,34 @@ lugar donde se desea colocar dicha sección, el siguiente comando:
 \subfile{\rutapaquetes/acerca-del-proyecto.tex}
 ```
 
+## Paquete `macros`
+Paquete con macros útiles como comandos y entornos nuevos.
+Por ahora solo se provee un solo comando para generar un entorno nuevo cuyo 
+contenido se mostrará dentro de un cuadro con un título. Dicho cuadro es 
+utilizado para distinguir las propiedades, corolarios y teoremas de los apuntes
+de Análisis Matemático, Algebra y otros.
+
+### Uso
+El paquete se debe incluir de la siguiente manera:
+```tex
+\usepackage{\rutapaquetes/macros}
+```
+Los comandos que dispone este paquete son:
+```tex
+\cuado{teorema}{blue} % Crea el entorno teorema con el estilo de color azul para el cuadro
+
+\begin{teorema*}
+	Contenido a colocar dentro del del cuadro de teorema
+\end{teorema*}
+```
+Nótese el caracter * en el entorno teorema. Sin dicho caracter el entorno 
+funciona de la misma manera. Pero se espera que en un futuro (cercano quizás)
+los entornos sin el * sean numerados con posibilidad de crear un índice del 
+tipo de entorno creado (en el ejemplo, un índice de teoremas).
+
+### Ejemplo de macro de cuadro
+![Ejemplo de cuadro de teorema con color azul](ejemplo-cuadro-azul.png?raw=true "Ejemplo de cuadro de teorema con color azul")
+
 ## Paquete `colaboradores`
 Incluye una sección donde se menciona a las personas que han colaboradores 
 en la creación, corrección y mejora del apunte.

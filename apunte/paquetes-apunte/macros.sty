@@ -1,0 +1,54 @@
+% **************************************************************************
+%  Package 'macros', con comandos y entornos útiles para los apuntes de 
+%  FIUBA Apuntes 
+%
+% **************************************************************************
+
+% ----- Informacion sobre el package para el sistema -----------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{macros}[2015/02/24 Comandos y entornos útiles]
+\RequirePackage{ifthen}
+\RequirePackage{pgf,tikz}
+\RequirePackage{environ}
+
+
+% ----- Imprimir mensaje al procesar un .tex que use este package ----------
+
+\typeout{Cargando package 'macros' (2015/02/24)}
+
+% ----- Algunas variables --------------------------------------------------
+
+% ----- Comandos para que el usuario defina las variables ------------------
+
+% ----- Codigo para manejo de errores --------------------------------------
+
+\def\se{\let\ifsetuperror\iftrue}
+\def\ifsetuperror{
+	\let\ifsetuperror\iffalse
+	\ifx\Materia\relax\se\errhelp={Te olvidaste de proveer una \materia{}.}\fi
+	\expandafter\ifsetuperror
+}
+
+\newcommand{\cuadroparcial}[2]{
+	\tikzstyle{#1frame} = [draw=black!40!#2, fill=#2!20, very thick, rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+	\tikzstyle{#1title} = [fill=black!40!#2, text=white]
+	\NewEnviron{#1}[2][0.8\textwidth]{%
+		\begin{tikzpicture}
+			\node[#1frame](box){%
+				\begin{minipage}{##1}
+					\BODY
+				\end{minipage}};
+			\node[#1title, rounded corners, right=10pt] at (box.north west) {\textbf{##2}};
+			\node[#1title, rounded corners] at (box.south) {$\aleph$};
+		\end{tikzpicture}
+	}
+}
+
+\newcommand{\cuadro}[2]{
+	\usetikzlibrary{shapes, arrows, positioning, shadows, trees, automata}
+	\cuadroparcial{#1}{#2}
+	\cuadroparcial{#1*}{#2}
+}
+%
+\ProcessOptions\relax
