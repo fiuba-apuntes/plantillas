@@ -1,0 +1,1 @@
+htlatex htmlcompile.tex "matjax"

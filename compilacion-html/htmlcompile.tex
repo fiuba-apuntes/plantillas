@@ -1,0 +1,37 @@
+% para compilar instalar el paquete tex4ht y una correcta instalación del sistema
+% http://www.tug.org/applications/tex4ht/mn.html
+% http://facweb.knowlton.ohio-state.edu/pviton/support/tex4ht.html
+
+
+\documentclass[a4paper, twoside]{article}
+\usepackage[utf8]{inputenc} % Especifica la codificación de caracteres de los documentos.
+\usepackage[spanish]{babel} % Indica que el documento se escribirá en español.
+\makeatletter				% Lo siguiente soluciona un bug de htlatex con babel español
+\let\ifes@LaTeXe\iftrue
+\makeatother
+%\usepackage[top=3cm, bottom=2.5cm, inner=1.5cm, outer=2.5cm]{geometry} % Márgenes personalizados
+\usepackage{subfiles} % Paquete para incluir el preambulo en los sub archivos.
+\usepackage{afterpage} % Permite añadir páginas despues de una página dada.
+\usepackage{hyperref} % Permite incluir enlaces en los archivos.
+\usepackage{lastpage} % Paquete para poder contabilizar el total de páginas del documento.
+\usepackage{fancyhdr} % Permite personalizar los header y footer del documento.
+\usepackage{graphicx} % Permite incluir gráficos
+\usepackage[hang, bf]{caption} % Personaliza los subtítulos de las figuras y tablas
+\usepackage{float} % Permite posicionar mejor las figuras y tablas
+\usepackage{amsmath} % Comandos para la escritura de fórmulas matemáticas de mayor complejidad
+\usepackage{amsfonts} % Proporciona fuentes matemáticas
+\usepackage{amssymb} % Proporciona símbolos matemáticos de la American Mathematical Society
+\usepackage{cancel}
+
+\newcommand{\imgdir}{../resources/images} % Ruta de las imágenes
+\newcommand{\rutapaquetes}{./paquetes-apunte}
+% Define los directorios de las imágenes y gráficos
+%\graphicspath{ {\imgdir/} {\rutapaquetes/} }
+
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+
+
+\begin{document}
+	\input{documento} % Cargo el documento, lo más limpio posible
+\end{document}
