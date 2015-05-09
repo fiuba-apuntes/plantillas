@@ -1,0 +1,95 @@
+\documentclass[a4paper,12pt,twoside]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % para insertar graficos/imagenes
+\usepackage{float} % me deja usar la H de 'here' en los graficos para ponerlos donde yo quiera
+\usepackage{fancyhdr} % headers y footers
+\usepackage{color} %Para colores y eso
+%\usepackage{geometry} %Para cambiar la geometria de las hojas
+
+\newcommand{\facultad}{Facultad de Ingeniería}
+\newcommand{\tituloTP}{Uso del Gradiente Extendido}
+\newcommand{\nroTP}{5}
+\newcommand{\codigoMateria}{79.30}
+\newcommand{\nombreMateria}{Matemática para Ingenieros Especiales}
+\newcommand{\departamento}{Departamento de Gestión}
+
+% Cosas para la caratula
+\newcommand{\txtFacultad}{\facultad}
+\newcommand{\txtNombreTP}{TP \nroTP}
+\newcommand{\txtTituloTP}{\tituloTP}
+\newcommand{\txtFecha}{\today}
+\newcommand{\txtMateria}{\codigoMateria -- \nombreMateria \newline \departamento}
+\newcommand{\txtCorrecciones}{\quad}
+\newcommand{\txtAutores}{
+	\begin{minipage}[b][10cm][t]{\textwidth}
+	\vfill
+	\begin{tabbing}
+		\underline{Autores:}	\hspace{-1cm}\=\+\hspace{3cm}\=\hspace{3cm}\=\\[.5cm]
+		Apellido, Nombre  \\
+		\> Padrón 00000 -\> \textit{E-mail:} lalala@gmail.com\\[.3cm]
+		Apellido, Nombre  \\
+		\> Padrón 00000 -\> \textit{E-mail:} lalala@gmail.com\\[.3cm]
+		Apellido, Nombre  \\
+		\> Padrón 00000 -\> \textit{E-mail:} lalala@gmail.com\\
+	\end{tabbing}
+\end{minipage}
+}
+
+% Defino el header y footer predeterminado
+\pagestyle{fancy} % seleccionamos un estilo
+\fancyhead{}
+\fancyfoot{}
+\lhead{\facultad} % texto izquierda de la cabecera
+\rhead{\nombreMateria \, (\codigoMateria)} % texto centro de la cabecera
+\cfoot{\thepage}
+% %
+\usepackage{anysize} % me permite definir los margenes como quiera
+\marginsize{2cm}{2cm}{1cm}{1.5cm} %izquierda, derecha, arriba, abajo
+
+
+
+% Cosas para poner la caratula desde Inkscape
+\usepackage{eso-pic} % Permite poner una imagen de fondo
+
+% Sarta de cosas para que compile el SVG a PDF+TeX
+% (es necesario que Inkscape esté en PATH)
+\newcommand{\executeiffilenewer}[3]{%
+	\ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+	{\pdffilemoddate{#2}}>0%
+	{\immediate\write18{#3}}\fi%
+}
+\newcommand{\includesvg}[1]{%
+	\executeiffilenewer{#1.svg}{#1.pdf}%
+	{inkscape -z -D --file=#1.svg %
+		--export-pdf=#1.pdf --export-latex}%
+	\input{#1.pdf_tex}%
+}
+% %
+
+
+\begin{document}
+	\begin{titlepage}
+		\thispagestyle{empty} % Elimino header y footer
+%		\newgeometry{top=0cm,left=0cm,bottom=0cm,right=0cm}
+		
+\AddToShipoutPicture*{ %Pongo la caratula en 0,0
+			\put(0,0){%
+				\parbox[b][\paperheight]{\paperwidth}{%
+					\vfill
+					\centering
+%					\def\svgwidth{\pagewidth}
+					\includesvg{caratula_tps}
+					\vfill
+				}}
+}
+		\quad
+		\vfill
+	\end{titlepage}
+	\restoregeometry
+	\ClearShipoutPicture
+	
+	\section{Titulo}
+	Hola :)
+	
+\end{document}
