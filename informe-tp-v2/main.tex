@@ -15,11 +15,28 @@
 \newcommand{\departamento}{Departamento de Gestión}
 
 % Cosas para la caratula
-\newcommand{\txtFacultad}{\facultad}
+\newcommand{\txtFacultad}{\Large{\textsc{\facultad}}}
 \newcommand{\txtNombreTP}{TP \nroTP}
 \newcommand{\txtTituloTP}{\tituloTP}
 \newcommand{\txtFecha}{\today}
 \newcommand{\txtMateria}{\codigoMateria -- \nombreMateria \newline \departamento}
+
+\newcommand{\txtRotulo}{
+	\begin{minipage}[t][10cm]{\textwidth}
+		\centering
+		\large{\textsc{\txtNombreTP}}
+		
+		\huge{\textbf{\tituloTP}}
+		
+		\hspace*{1cm}
+		
+		\normalsize
+		\txtFecha
+		
+		\txtMateria
+	\end{minipage}
+	}
+
 \newcommand{\txtCorrecciones}{\quad}
 \newcommand{\txtAutores}{
 	\begin{minipage}[b][10cm][t]{\textwidth}
@@ -85,11 +102,12 @@
 }
 		\quad
 		\vfill
+		
 	\end{titlepage}
-	\restoregeometry
-	\ClearShipoutPicture
+		\restoregeometry
+		\ClearShipoutPicture
+
 	
-	\section{Titulo}
-	Hola :)
+	\include{contenido}
 	
 \end{document}

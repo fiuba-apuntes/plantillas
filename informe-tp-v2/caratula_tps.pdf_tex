@@ -50,15 +50,12 @@
   \makeatother%
   \begin{picture}(1,1.41428571)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{caratula_tps.pdf}}%
-    \put(0.37664306,1.25729112){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.58375064\unitlength}\centering \Huge{\textsc{\txtFacultad}}\end{minipage}}}%
-    \put(0.40203399,1.18953691){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.53216337\unitlength}\centering \large{\textsc{\txtNombreTP}}\end{minipage}}}%
-    \put(0.40450507,1.03933705){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.52348185\unitlength}\centering \txtMateria\end{minipage}}}%
+    \put(0.37664306,1.25191546){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.58375064\unitlength}\centering \txtFacultad\end{minipage}}}%
+    \put(0.40203399,1.18953691){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.53024355\unitlength}\centering \txtRotulo\end{minipage}}}%
     \put(0.44829178,1.10297052){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.47037033\unitlength}\centering \end{minipage}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{caratula_tps.pdf}}%
     \put(0.68149489,1.10776856){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.0081454\unitlength}\raggedright \end{minipage}}}%
-    \put(0.40252151,1.07259496){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.52755453\unitlength}\centering \txtFecha\end{minipage}}}%
     \put(0.05589301,0.70166138){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.71767672\unitlength}\raggedright \txtAutores\end{minipage}}}%
     \put(0.05589301,0.99679636){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.71767672\unitlength}\raggedright \txtCorrecciones\end{minipage}}}%
-    \put(0.40203399,1.14857636){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.53216337\unitlength}\centering \huge{\txtTituloTP}\end{minipage}}}%
   \end{picture}%
 \endgroup%
